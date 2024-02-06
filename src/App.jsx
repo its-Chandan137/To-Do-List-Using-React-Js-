@@ -94,7 +94,7 @@ function App() {
         </div>
 
           <div className="btn-Area">
-            <button className={`btn-todo secondary-btn ${sShift === false && 'active'}`} onClick={() => setsShift(false)}>To Do</button>
+            <button className={`btn-todo secondary-btn ${sShift === false && 'active'}`} onClick={() => setsShift(false)}>To Do!</button>
             <button className={`btn-completed secondary-btn ${sShift === true && 'active'}`} onClick={() => setsShift(true)}>Completed</button>
           </div>
 

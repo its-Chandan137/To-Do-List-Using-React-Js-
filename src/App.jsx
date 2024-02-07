@@ -3,6 +3,9 @@ import './App.css'
 import {AiOutlineDelete} from 'react-icons/ai'
 import {BsCheckLg} from 'react-icons/bs'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [sShift, setsShift] = useState(false)
   const [todos,setTodos] = useState([])
@@ -11,18 +14,36 @@ function App() {
   const [completedTodo,setCompletedTodo] = useState([])
 
   const handleTodo = (i) =>{
-    let todoItems = {
-      title: titles,
-      description: descriptions
+
+    if(titles == "" && descriptions == "")
+    {
+      toast.success('Enter : Title |or| Description', {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
     }
-
-    let updatedTodo = [...todos]
-    updatedTodo.push(todoItems)
-    setTodos(updatedTodo)
-    localStorage.setItem('todolist',JSON.stringify(updatedTodo))
-
-    setTitles("");
-    setDescriptions("");
+    else
+    {
+      let todoItems = {
+        title: titles,
+        description: descriptions
+      }
+  
+      let updatedTodo = [...todos]
+      updatedTodo.push(todoItems)
+      setTodos(updatedTodo)
+      localStorage.setItem('todolist',JSON.stringify(updatedTodo))
+  
+      setTitles("");
+      setDescriptions("");
+    }
   }
 
   const handleDelete = (i) =>{
@@ -111,6 +132,7 @@ function App() {
                     
                     <AiOutlineDelete className="icon" onClick={() => handleDelete(i)} title = "Wanna Delete?"/>
                     <BsCheckLg className="check-icon" onClick={() => handleComplete(i)} title = "You Completed !"/>
+
                   </div>
 
                 </div>
@@ -136,6 +158,7 @@ function App() {
           </div>
 
       </div>
+      <ToastContainer/>
     </div>
   )
 }

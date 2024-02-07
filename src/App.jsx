@@ -3,7 +3,7 @@ import './App.css'
 import {AiOutlineDelete} from 'react-icons/ai'
 import {BsCheckLg} from 'react-icons/bs'
 
-import { ToastContainer, toast } from 'react-toastify';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

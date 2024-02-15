@@ -18,7 +18,7 @@ function App() {
     if(titles == "" && descriptions == "")
     {
       toast.success('Enter : Title |or| Description', {
-        position: "bottom-center",
+        position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -82,7 +82,27 @@ function App() {
     setCompletedTodo(reduceTodo);
   }
 
+  const handleKeyDown = (e) =>{
+    if(e.key == 'Enter' && titles != "")
+    {
+      document.getElementById('inputDescription').focus()
+    }
+  }
+
+  const handleOver = (e) =>{
+    if(e.key == 'Enter' && titles != "" && descriptions != "")
+    {
+      handleTodo();
+      document.getElementById('inputTitle').focus()
+    }
+    else if(e.key == 'Backspace' && descriptions == "")
+    {
+      document.getElementById('inputTitle').focus()
+    }
+  }
+
   useEffect(() => {
+    document.getElementById('inputTitle').focus()
     let saveTodo = JSON.parse(localStorage.getItem('todolist'))
     let saveCompletedTodo = JSON.parse(localStorage.getItem('completedTodo'))
     if(saveTodo)
@@ -103,11 +123,11 @@ function App() {
         <div className="todo-input-box">
           <div className='todo-input-items'>
             <label>Title</label>
-            <input type="text" placeholder="What's the task Title?" value={titles} onChange={(e) => setTitles(e.target.value)}/>
+            <input id='inputTitle' type="text" placeholder="What's the task Title?" value={titles} onChange={(e) => setTitles(e.target.value)} onKeyDown={handleKeyDown}/>
           </div>
           <div className='todo-input-items'>
             <label>Description</label>
-            <input type="text" placeholder="What's the task Description?" value={descriptions} onChange={(e) => setDescriptions(e.target.value)}/>
+            <input id='inputDescription' type="text" placeholder="What's the task Description?" value={descriptions} onChange={(e) => setDescriptions(e.target.value)} onKeyDown={handleOver}/>
           </div>
           <div className='todo-input-items'>
             <button className='add-button' onClick={handleTodo}>Add</button>

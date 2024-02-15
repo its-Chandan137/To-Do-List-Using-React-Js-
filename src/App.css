@@ -181,3 +181,36 @@ label:hover{
   color: rgb(0, 192, 103);
   transition: 0.3s;
 }
+
+@media screen and (width <= 700px) {
+
+
+  .todo-container{
+    width: 350px;
+    border-radius: 15px;
+  }
+  .todo-container::-webkit-scrollbar{
+    display: none;
+  }
+  .todo-input-box{
+    /* background-color: pink; */
+    width: 335px;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    gap: 15px;
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .btn-Area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}

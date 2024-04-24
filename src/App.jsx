@@ -15,9 +15,36 @@ function App() {
 
   const handleTodo = (i) =>{
 
-    if(titles == "" && descriptions == "")
+    if(!titles && !descriptions)
     {
-      toast.success('Enter : Title |or| Description', {
+      toast.error('Enter : Title |or| Description', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
+    }
+    else if(!descriptions){
+      toast.error('Enter :  Description', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
+    }
+    else if(!titles)
+    {
+      toast.error('Enter : Title ', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -43,6 +70,7 @@ function App() {
   
       setTitles("");
       setDescriptions("");
+      document.getElementById('inputTitle').focus();
     }
   }
 
@@ -135,20 +163,20 @@ function App() {
         </div>
 
           <div className="btn-Area">
-            <button className={`btn-todo secondary-btn ${sShift === false && 'active'}`} onClick={() => setsShift(false)}>To Do!</button>
-            <button className={`btn-completed secondary-btn ${sShift === true && 'active'}`} onClick={() => setsShift(true)}>Completed</button>
+            <button className={`btn-todo secondary-btn ${!sShift && 'active'}`} onClick={() => setsShift(!sShift)}>To Do!</button>
+            <button className={`btn-completed secondary-btn ${sShift && 'active'}`} onClick={() => setsShift(!sShift)}>Completed</button>
           </div>
 
           <div className="todo-list">
-          {sShift === false && todos.map((item,i) => {
+          {!sShift && todos.map((item,i) => {
               return(
                 <div className="todo-list-items" key = {i}>
-                  <div>
+                  <div className='todoTexts'>
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>
                   </div>
 
-                  <div>
+                  <div className='todpIcons'>
                     
                     <AiOutlineDelete className="icon" onClick={() => handleDelete(i)} title = "Wanna Delete?"/>
                     <BsCheckLg className="check-icon" onClick={() => handleComplete(i)} title = "You Completed !"/>
@@ -159,7 +187,7 @@ function App() {
               )
             })}
 
-          {sShift === true && completedTodo.map((item,i) => {
+          {sShift && completedTodo.map((item,i) => {
               return(
                 <div className="todo-list-items" key = {i}>
                   <div>

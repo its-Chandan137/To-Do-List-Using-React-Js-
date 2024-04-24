@@ -207,6 +207,14 @@ label:hover{
     padding-left: 20px;
   }
 
+  .todo-list-items{
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .btn-Area{
     display: flex;
     justify-content: center;
